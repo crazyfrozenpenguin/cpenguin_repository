@@ -1,0 +1,4 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Wed Jul 18 22:22:00 EDT 2012
+vert.x-testframework-1.1.0.jar>=
+vert.x-testframework-1.1.0.pom>=
