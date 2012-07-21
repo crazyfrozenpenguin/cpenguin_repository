@@ -1,10 +1,10 @@
 package org.riaconnection.vertx.server;
 
 import org.vertx.java.core.Handler;
+import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.http.HttpServer;
 import org.vertx.java.core.http.HttpServerRequest;
 import org.vertx.java.core.http.ServerWebSocket;
-import org.vertx.java.core.streams.Pump;
 import org.vertx.java.deploy.Verticle;
 
 public class M2VertXServer extends Verticle {
@@ -19,6 +19,7 @@ public class M2VertXServer extends Verticle {
 		// Register HTTP container
 		server.requestHandler(new Handler<HttpServerRequest>() {
 
+			@Override
 			public void handle(HttpServerRequest req) {
 				String file = req.path.equals("/") ? "index.html" : req.path;
 				req.response.sendFile("webroot/" + file);
@@ -31,8 +32,19 @@ public class M2VertXServer extends Verticle {
 				.setAcceptBacklog(32000)
 				.websocketHandler(new Handler<ServerWebSocket>() {
 
-					public void handle(ServerWebSocket ws) {
-						Pump.createPump(ws, ws, BUFF_SIZE).start();
+					@Override
+					public void handle(final ServerWebSocket ws) {
+						if (ws.path.equals("/myapp")) {
+							ws.dataHandler(new Handler<Buffer>() {
+								@Override
+								public void handle(Buffer data) {
+									// Echo it back
+									ws.writeTextFrame(data.toString());
+								}
+							});
+						} else {
+							ws.reject();
+						}
 					}
 
 				});
