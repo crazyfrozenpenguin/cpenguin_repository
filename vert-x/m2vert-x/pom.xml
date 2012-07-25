@@ -24,14 +24,39 @@
 		</dependency>
 		<dependency>
 			<groupId>com.vertx</groupId>
-			<artifactId>vert.x-core</artifactId>
-			<version>1.1.0</version>
+			<artifactId>vertx-core</artifactId>
+			<version>1.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vertx</groupId>
-			<artifactId>vert.x-platform</artifactId>
-			<version>1.1.0</version>
+			<artifactId>vertx-platform</artifactId>
+			<version>1.2.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.vertx</groupId>
+			<artifactId>vertx-lang-java</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vertx</groupId>
+			<artifactId>vertx-lang-jruby</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vertx</groupId>
+			<artifactId>vertx-lang-jython</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vertx</groupId>
+			<artifactId>vertx-lang-rhino</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vertx</groupId>
+			<artifactId>vertx-testframework</artifactId>
+			<version>1.2.0</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
@@ -45,12 +70,17 @@
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty</artifactId>
-			<version>3.4.6.Final</version>
+			<version>3.5.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast</artifactId>
-			<version>2.0.2</version>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mozilla</groupId>
