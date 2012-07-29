@@ -3,10 +3,10 @@
   <groupId>com.vertx</groupId>
   <artifactId>vertx-lang-jython</artifactId>
   <versioning>
-    <release>1.2.0</release>
+    <release>1.2.2</release>
     <versions>
-      <version>1.2.0</version>
+      <version>1.2.2</version>
     </versions>
-    <lastUpdated>20120725014341</lastUpdated>
+    <lastUpdated>20120729193933</lastUpdated>
   </versioning>
 </metadata>
