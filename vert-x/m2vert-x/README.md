@@ -11,4 +11,3 @@ Example Maven 2 project for Vert.X 1.2.2 development.
 - Eclipse launcher included for both run and debug
 - Vert.X IO mods directory included
 - Includes simple script to easily add new jars to local repository
- 
