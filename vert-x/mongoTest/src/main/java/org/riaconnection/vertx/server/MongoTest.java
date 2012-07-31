@@ -26,12 +26,14 @@ public class MongoTest extends Verticle {
 
 		eb = vertx.eventBus();
 
+		// Deploy MongoDB module and load some sample data into it
 		container.deployModule("vertx.mongo-persistor-v1.0", null, 1,
 				new Handler<String>() {
 
 					@Override
 					public void handle(String info) {
 
+						// Remove all data from collection
 						JsonObject delete = new JsonObject();
 						delete.putString("action", "delete");
 						delete.putString("collection", "teams");
@@ -39,6 +41,7 @@ public class MongoTest extends Verticle {
 
 						eb.send(pa, delete);
 
+						// Add new entries to collection
 						String[] teams = { "Benfica", "Sporting", "Porto" };
 
 						JsonObject team = new JsonObject();
@@ -52,10 +55,12 @@ public class MongoTest extends Verticle {
 							eb.send(pa, entry);
 						}
 
+						// Notify app that data has been loaded
 						eb.send(appNotify, DB_LOADED);
 					}
 				});
 
+		// Register for app notifications
 		eb.registerHandler(appNotify, new Handler<Message<String>>() {
 
 			@Override
@@ -64,6 +69,7 @@ public class MongoTest extends Verticle {
 				logger.info("Notification message received: "
 						+ message.body.toString());
 
+				// If db loaded then query for all items in collection
 				if (message.body.equals(DB_LOADED)) {
 					JsonObject find = new JsonObject();
 					find.putString("action", "find");
