@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.2.2
+VERSION=1.2.3
 LIBS=(core lang-groovy lang-java lang-jruby lang-jython lang-rhino platform testframework)
 
 for NAME in ${LIBS[*]}
