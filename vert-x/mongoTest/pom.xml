@@ -96,8 +96,8 @@
 
 	<repositories>
 		<repository>
-			<id>local-project-repo</id>
-			<url>file://${project.basedir}/lib/repository</url>
+			<id>crazy-penguin-repository</id>
+			<url>https://github.com/crazyfrozenpenguin/cpenguin_repository/raw/master/maven-repo/repository</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
