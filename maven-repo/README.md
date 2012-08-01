@@ -1,4 +1,4 @@
 cpenguin_repository
 ===================
 
-Crazy Penguin Public Repository
+Crazy Penguin github based Maven Repository
