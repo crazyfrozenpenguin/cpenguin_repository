@@ -1,0 +1,123 @@
+<html>
+<head>
+	<title>Vert.X Event Bus - Quick Introduction</title>
+</head>
+
+<body>
+	<h1>Vert.X Event Bus Test App</h1>
+	
+	<form onsubmit="return false;">
+		<input type="button" id="connectButton" value="Open connection"/>
+	</form>
+
+	<div id="submitForm">
+		<form onsubmit="return false;">
+		    Message:<input type="text" id="sendMessage" value="Hello from Vert.X!"/>
+		    <input type="radio" name="submissionType" value="publish"> Publish
+			<input type="radio" name="submissionType" value="send" checked> Send
+		    <input type="button" id="submitButton" value="Submit message"/>
+		</form>
+	
+		<form onsubmit="return false;">
+			<input type="checkbox" name="enableHandlerOnBrowser" value="true" />Enable message handler on browser<br>
+		</form>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+
+	Messages received on browser handler:<br>
+	<hr>
+	<div id="received" class="innerbox" style="width: 400px; height: 275px;">
+	</div>
+
+	<script src="js/jquery-1.7.1.min.js"></script>
+	<script src="js/sockjs-0.2.1.min.js"></script>
+	<script src="js/vertxbus.js"></script>
+	<script>
+
+		var eb = null;
+		var addressName = 'app.conduit';
+	
+		function submitMessage(type, address,  message) {
+			if (eb) {
+				var json = {text: message};
+				if (type == 'send') {
+					eb.send(address, {text: 'Send message: ' + message});
+				} else {
+					eb.publish(address, {text: 'Publish message: ' + message});
+				}
+			}
+		}
+	
+		function browserHandler(msg, replyTo) {
+			$('#received').append(msg.text + "<br>");
+		}
+		
+		function subscribe(address) {
+			if (eb) {
+				eb.registerHandler(address, browserHandler);
+				$('#subscribed').append($("<code>").text("Address:" + address));
+				$('#subscribed').append($("</code><br>"));
+			}
+		}
+	
+		function unsubscribe(address) {
+			if (eb) {
+				eb.unregisterHandler(address, browserHandler);
+			}
+		}
+		
+	  	function closeConn() {
+			if (eb) {
+				eb.close();
+			}
+			$('#connectButton').val("Open Connection");
+			$("#connectButton").on('click.openConnection', function() {
+				openConn();
+			});
+		}
+	
+	  	function openConn() {
+	  	  	eb = new vertx.EventBus("http://localhost:8080/eventbus");
+	
+	  	  	eb.onclose = function() {
+				eb = null;
+				$('#submitForm').hide();
+			};
+	
+			eb.onopen = function() {
+				$('#connectButton').val('Close Connection');
+				$("#connectButton").off('click.openConnection');
+				$('#connectButton').on('click.closeConnection', function() {
+					$("#connectButton").off('click.closeConnection');
+					closeConn();
+				});
+				
+				$('#submitForm').show();
+			};
+		}
+	
+		$(document).ready(function() {
+			$('#submitForm').hide();
+			
+			$("#submitButton").click(function() {
+				submitMessage($("input[@name=submissionType]:checked").val(), addressName, $("#sendMessage").val());
+			});
+	
+			$('input[@name=enableHandlerOnBrowser]:checkbox').change(function() {
+				if (this.checked) {
+					subscribe(addressName);
+				} else {
+					unsubscribe(addressName);
+				}
+			});
+	
+			closeConn();
+		});
+	
+	</script>
+
+</body>
+</html>
