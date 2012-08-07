@@ -1,0 +1,15 @@
+{ 
+	"inbound_permitted" : [
+	{
+		"address": "vertx.basicauthmanager.login"
+	}, 
+	{
+		"address" : "vertx.mongopersistor",
+		"match" : 
+		{
+			"action" : "find",
+			"collection" : "albums"
+		}
+	}],
+	"outbound_permitted" : [{}]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "artist": "The Wurzels",
+    "genre": "Scrumpy and Western",
+    "title": "I Am A Cider Drinker",
+    "price": "0.99"
+  },
+  {
+    "artist": "Vanilla Ice",
+    "genre": "Hip Hop",
+    "title": "Ice Ice Baby",
+    "price": "0.01"
+  },
+  {
+    "artist": "Ena Baga",
+    "genre": "Easy Listening",
+    "title": "The Happy Hammond",
+    "price": "0.50"
+  },
+  {
+    "artist": "The Tweets",
+    "genre": "Bird related songs",
+    "title": "The Birdy Song",
+    "price": "1.20"
+  }
+]
