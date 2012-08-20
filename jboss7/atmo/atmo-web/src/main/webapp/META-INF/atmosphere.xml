@@ -1,0 +1,4 @@
+<atmosphere-handlers>
+    <atmosphere-handler context-root="/pubsub/*" class-name="crazypenguin.servlets.PubSubAtmosphereHandler">
+    </atmosphere-handler>
+</atmosphere-handlers>
